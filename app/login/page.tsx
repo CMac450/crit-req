@@ -8,6 +8,7 @@ import Link from 'next/link'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
   const [view, setView] = useState('sign-in')
   const router = useRouter()
   const supabase = createClientComponentClient()
@@ -15,6 +16,7 @@ export default function Login() {
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     await supabase.auth.signUp({
+      // username,
       email,
       password,
       options: {
@@ -22,6 +24,9 @@ export default function Login() {
       },
     })
     setView('check-email')
+    console.log(email)
+    console.log(password)
+    // console.log('hit sign up')
   }
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -62,10 +67,32 @@ export default function Login() {
           up
         </p>
       ) : (
+
         <form
+          // {view === 'sign-in' && (<h1 className="text-7xl font-bold">Sign In</h1>) : (<h1 className="text-7xl font-bold">Sign Up</h1>)}
           className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
           onSubmit={view === 'sign-in' ? handleSignIn : handleSignUp}
         >
+          {view === 'sign-in' && (
+            <>
+              <h1 className="text-7xl text-center font-bold py-10">Sign In</h1>
+            </>
+          )}
+          {view === 'sign-up' && (
+            <>
+              <h1 className="text-7xl text-center font-bold py-10">Sign Up</h1>
+            </>
+          )}
+          <label className="text-md" htmlFor="username">
+            Username
+          </label>
+          <input
+            className="rounded-md px-4 py-2 bg-inherit border mb-6"
+            name="username"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            placeholder="jDoe456"
+          />
           <label className="text-md" htmlFor="email">
             Email
           </label>
@@ -89,7 +116,7 @@ export default function Login() {
           />
           {view === 'sign-in' && (
             <>
-              <button className="bg-green-700 rounded px-4 py-2 text-white mb-6">
+              <button className="bg-neutral rounded px-4 py-2 text-white mb-6">
                 Sign In
               </button>
               <p className="text-sm text-center">
@@ -105,7 +132,7 @@ export default function Login() {
           )}
           {view === 'sign-up' && (
             <>
-              <button className="bg-green-700 rounded px-4 py-2 text-white mb-6">
+              <button className="bg-neutral rounded px-4 py-2 text-white mb-6">
                 Sign Up
               </button>
               <p className="text-sm text-center">
