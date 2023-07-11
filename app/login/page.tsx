@@ -83,7 +83,7 @@ export default function Login() {
               <h1 className="text-7xl text-center font-bold py-10">Sign Up</h1>
             </>
           )}
-          <label className="text-md" htmlFor="username">
+          {/* <label className="text-md" htmlFor="username">
             Username
           </label>
           <input
@@ -92,7 +92,7 @@ export default function Login() {
             onChange={(e) => setUsername(e.target.value)}
             value={username}
             placeholder="jDoe456"
-          />
+          /> */}
           <label className="text-md" htmlFor="email">
             Email
           </label>
