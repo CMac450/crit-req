@@ -1,5 +1,5 @@
 
-import {LoggedInUserNav} from '../page'
+import {LoggedInUserNav, NotLoggedInUserNav} from '../../components/NavMenu'
 
 export default async function UserAccount() {
 
